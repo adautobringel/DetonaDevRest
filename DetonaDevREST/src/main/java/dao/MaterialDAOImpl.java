@@ -40,7 +40,7 @@ public class MaterialDAOImpl implements MaterialDAO{
 		EntityTransaction trans = ent.getTransaction();
 		trans.begin();
 		
-		Material matBase = ent.find(Material.class, material.getCodigo());
+		Material matBase = ent.find(Material.class, material.getID());
 		if(matBase!=null) {
 			ent.merge(material);
 			trans.commit();
@@ -90,10 +90,12 @@ public class MaterialDAOImpl implements MaterialDAO{
 		return materiais;
 	}
 
+
 	@Override
-	public Material pesquisarMaterial(String codigo) {
+	public Material pesquisarMaterial(int id) {
 		EntityManager ent = JpaUtil.getEntityManager();
-		Material retorno = ent.find(Material.class, codigo);
+		Material retorno = ent.find(Material.class, id);
+		
 		return retorno;
 	}
 

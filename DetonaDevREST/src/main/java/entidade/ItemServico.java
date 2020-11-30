@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -20,10 +21,17 @@ public class ItemServico {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "S_ITEMSERVICO")
 	@Column(name = "ID", nullable = false)
 	private int id;
-//	@Column(name = "ID_ORDEMSERVICO", nullable = false)	
-//	private int idOrdemServico;
-//	@Column(name = "ID_MATERIAL", nullable = false)	
-//	private int idMaterial;
+
+	@Column(name = "QTD", nullable = false)
+	private int qtd;
+	
+	public int getQtd() {
+		return qtd;
+	}
+
+	public void setQtd(int qtd) {
+		this.qtd = qtd;
+	}
 
 	@ManyToOne
 	@JoinColumn(name = "ID_ORDEMSERVICO", referencedColumnName = "ID", nullable = false)

@@ -94,7 +94,7 @@ public class MaterialServico {
 		retorno.setCodigoRetorno(0);
 		retorno.setMsgRetorno("SUCESSO!!!");
 		
-		if(this.materialDAO.pesquisarMaterial(material.getCodigo()) == null) {
+		if(this.materialDAO.pesquisarMaterial(material.getID()) == null) {
 			retorno.setCodigoRetorno(1);
 			retorno.setMsgRetorno("FALHA: Material não encontrado!!!!");
 		}

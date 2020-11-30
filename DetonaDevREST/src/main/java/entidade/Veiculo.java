@@ -1,10 +1,14 @@
 package entidade;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -12,7 +16,7 @@ import javax.persistence.Table;
 public class Veiculo {
 
  @Id	
- @Column(name = "PLACA", nullable = false, length=7)
+ @Column(name = "PLACA", nullable = false)
  private String placa;
  @Column(name = "FABRICANTE", nullable = false)
  private String fabricante;
@@ -25,11 +29,21 @@ public class Veiculo {
  @Column(name = "ANO", nullable = false, length=4)
  private int ano;
  
- 
  @ManyToOne
  @JoinColumn(name = "ID_CLIENTE", referencedColumnName = "CPF", nullable = false)
  private Cliente cliente;
  
+ @OneToMany(mappedBy = "veiculo", cascade = CascadeType.ALL)
+ private List<OrdemServico> ordemServico;
+ 
+public List<OrdemServico> getOrdensServico() {
+	return ordemServico;
+}
+
+public void setOrdensServico(List<OrdemServico> ordensServico) {
+	this.ordemServico = ordensServico;
+}
+
 public String getPlaca() {
 	return placa;
 }

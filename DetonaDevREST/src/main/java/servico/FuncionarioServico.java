@@ -1,11 +1,15 @@
 package servico;
 
+import java.awt.Desktop;
+import java.net.URI;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+
 
 import dao.FuncionarioDAO;
 import dao.FuncionarioDAOImpl;
@@ -64,6 +68,16 @@ public class FuncionarioServico {
 			retorno.setCodigoRetorno(1);
 			retorno.setMsgRetorno("FALHA: Funcionario invalido!!!");
 		}
+		
+		/*Inserido para chamar pagina de acesso*/
+		if(retorno.getCodigoRetorno()==0) {
+			System.out.println("LOGADO");
+		try {
+			URI link = new URI("www.uol.com.br");
+			Desktop.getDesktop().browse(link);
+			} catch (Exception e) {	e.printStackTrace();}
+		}
+		/*fim*/
 		
 		return retorno;
 	}

@@ -91,7 +91,7 @@ public class ClienteServico {
 		
 		RetornoCliente retorno = new RetornoCliente();
 		retorno.setCodigoRetorno(0);
-		retorno.setMsgRetorno("SUCESSO!!!");
+		retorno.setMsgRetorno("SUCESSO!!!!!!!!!!");
 		if(this.clienteDAO.pesquisarCliente(cliente.getCpf()) == null) {
 			retorno.setCodigoRetorno(1);
 			retorno.setMsgRetorno("FALHA: Cliente não encontrado!!!!");

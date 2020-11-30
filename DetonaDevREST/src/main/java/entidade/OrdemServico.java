@@ -14,23 +14,32 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "MATERIAL")
+@Table(name = "ORDEMSERVICO")
 @SequenceGenerator(name = "S_ORDEMSERVICO", sequenceName = "S_ORDEMSERVICO", initialValue = 1, allocationSize = 1)
 public class OrdemServico {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "S_ORDEMSERVICO")
 	@Column(name = "ID", nullable = false)	
 	private int id;
+	
 	@Column(name = "DATAENTRADA", nullable = false)	
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataEntrada;
-	@Column(name = "DATAINICIO", nullable = false)	
+	
+	@Column(name = "DATAINICIO")
+//	@Temporal(TemporalType.DATE)
 	private Date dataInicio;
-	@Column(name = "DATAFIM", nullable = false)	
+	
+	@Column(name = "DATAFIM")	
+//	@Temporal(TemporalType.DATE)
 	private Date dataFim;
+	
 	@Column(name = "STATUS", nullable = false)	
-	private String Status;
+	private String status;
 	@Column(name = "QUILOMETRAGEM", nullable = false)	
 	private int quilometragem;
 	@Column(name = "VALORMAODEOBRA", nullable = false)	
@@ -50,10 +59,14 @@ public class OrdemServico {
 	@JoinColumn(name = "ID_FUNCIONARIO", referencedColumnName = "CODIGO", nullable = false)
 	private Funcionario funcionario;
 	
-	@OneToMany(mappedBy = "ordensServico", cascade = CascadeType.ALL)
+	
+	
+	
+	
+	@OneToMany(mappedBy="ordensServico", cascade = CascadeType.ALL)
 	private List<ItemServico> itensServico;
 	
-
+	
 
 	public List<ItemServico> getItensServico() {
 		return itensServico;
@@ -95,12 +108,21 @@ public class OrdemServico {
 		this.dataFim = dataFim;
 	}
 
+	
 	public String getStatus() {
-		return Status;
+		return status;
 	}
 
 	public void setStatus(String status) {
-		Status = status;
+		this.status = status;
+	}
+
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
 	}
 
 	public int getQuilometragem() {
@@ -143,14 +165,7 @@ public class OrdemServico {
 		this.obs = obs;
 	}
 
-	public Funcionario getFuncionario() {
-		return funcionario;
-	}
-
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
-	}
-
+	
 	public Veiculo getVeiculo() {
 		return veiculo;
 	}
